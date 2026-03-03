@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Automotivo - Gestao de Estoque</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema Automotivo</h1>
+        <p>Gestao de Estoque de Veiculos</p>
+    </header>
+
+    <nav>
+        <button class="tab-btn active" data-tab="veiculos">Veiculos</button>
+        <button class="tab-btn" data-tab="marcas">Marcas</button>
+        <button class="tab-btn" data-tab="modelos">Modelos</button>
+    </nav>
+
+    <!-- ========== ABA VEICULOS ========== -->
+    <section id="veiculos" class="tab-content active">
+        <h2>Cadastro de Veiculo</h2>
+        <form id="form-veiculo">
+            <input type="hidden" id="veiculo-id">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="veiculo-marca">Marca</label>
+                    <select id="veiculo-marca" required>
+                        <option value="">Selecione a marca</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo-modelo">Modelo</label>
+                    <select id="veiculo-modelo" required>
+                        <option value="">Selecione o modelo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo-ano">Ano</label>
+                    <input type="number" id="veiculo-ano" min="1900" max="2030" required>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo-cor">Cor</label>
+                    <input type="text" id="veiculo-cor" required>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo-preco">Preco (R$)</label>
+                    <input type="number" id="veiculo-preco" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo-km">Quilometragem</label>
+                    <input type="number" id="veiculo-km" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="veiculo-status">Status</label>
+                    <select id="veiculo-status" required>
+                        <option value="DISPONIVEL">Disponivel</option>
+                        <option value="VENDIDO">Vendido</option>
+                        <option value="RESERVADO">Reservado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="btn-salvar-veiculo">Salvar</button>
+                <button type="button" id="btn-cancelar-veiculo" style="display:none">Cancelar</button>
+            </div>
+        </form>
+
+        <h2>Filtros</h2>
+        <div class="filtros">
+            <select id="filtro-marca"><option value="">Todas as marcas</option></select>
+            <select id="filtro-modelo"><option value="">Todos os modelos</option></select>
+            <input type="number" id="filtro-ano" placeholder="Ano">
+            <select id="filtro-status">
+                <option value="">Todos os status</option>
+                <option value="DISPONIVEL">Disponivel</option>
+                <option value="VENDIDO">Vendido</option>
+                <option value="RESERVADO">Reservado</option>
+            </select>
+            <input type="number" id="filtro-preco-min" placeholder="Preco min">
+            <input type="number" id="filtro-preco-max" placeholder="Preco max">
+            <button id="btn-filtrar">Filtrar</button>
+            <button id="btn-limpar-filtro">Limpar</button>
+        </div>
+
+        <h2>Estoque de Veiculos</h2>
+        <table id="tabela-veiculos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Ano</th>
+                    <th>Cor</th>
+                    <th>Preco</th>
+                    <th>KM</th>
+                    <th>Status</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <!-- ========== ABA MARCAS ========== -->
+    <section id="marcas" class="tab-content">
+        <h2>Cadastro de Marca</h2>
+        <form id="form-marca">
+            <input type="hidden" id="marca-id">
+            <div class="form-inline">
+                <input type="text" id="marca-nome" placeholder="Nome da marca" required>
+                <button type="submit">Salvar</button>
+                <button type="button" id="btn-cancelar-marca" style="display:none">Cancelar</button>
+            </div>
+        </form>
+        <table id="tabela-marcas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <!-- ========== ABA MODELOS ========== -->
+    <section id="modelos" class="tab-content">
+        <h2>Cadastro de Modelo</h2>
+        <form id="form-modelo">
+            <input type="hidden" id="modelo-id">
+            <div class="form-inline">
+                <select id="modelo-marca" required>
+                    <option value="">Selecione a marca</option>
+                </select>
+                <input type="text" id="modelo-nome" placeholder="Nome do modelo" required>
+                <button type="submit">Salvar</button>
+                <button type="button" id="btn-cancelar-modelo" style="display:none">Cancelar</button>
+            </div>
+        </form>
+        <table id="tabela-modelos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
